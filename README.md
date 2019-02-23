@@ -4,8 +4,8 @@ This repo contains the most frequently used Algoritms and Data Structures in the
 
 ## Algorithms
 
-- [Quick Sort](/quicksort)
+- [Quick Sort](/algorithms/quicksort)
 
 ## Data Structures
 
-- [Binary Search Tree](/binarysearchtree)
+- [Binary Search Tree](/data-structures/binarysearchtree)
