@@ -36,8 +36,10 @@ namespace quicksort
             ClearMemory();
 
             stopwatch.Start();
-            input = QuickSort(input);
+            var ticks = 0;
+            input = QuickSort(input, ref ticks);
             stopwatch.Stop();
+            Console.WriteLine($"Sorted in {ticks} ticks");
             Console.WriteLine($"{stopwatch.Elapsed.TotalMilliseconds}ms");
         }
 
@@ -48,17 +50,25 @@ namespace quicksort
             GC.Collect();
         }
 
-        static List<int> QuickSort(List<int> collection)
+        static List<int> QuickSort(List<int> collection, ref int ticks)
         {
-            if (collection.Count <= 1)
+            if (collection.Count <= 1) 
                 return collection;
 
-            var pivot = collection[collection.Count/2];
-            var smallerThanPivot = collection.Where(i => i < pivot).ToList();
-            var equalToPivot = collection.Where(i => i == pivot).ToList();
-            var biggerThanPivot = collection.Where(i => i > pivot).ToList();
-            
-            return QuickSort(smallerThanPivot).Concat(equalToPivot).Concat(QuickSort(biggerThanPivot)).ToList();
+            int pivotPosition = collection.Count / 2;
+            int pivotValue = collection[pivotPosition];
+
+            collection.RemoveAt(pivotPosition);
+
+            var smallerValues = collection.Where(i => i < pivotValue).ToList();
+            var greaterValues = collection.Where(i => i > pivotValue).ToList();
+
+            ticks++;
+
+            var sorted = QuickSort(smallerValues, ref ticks);
+            sorted.Add(pivotValue);
+            sorted.AddRange(QuickSort(greaterValues, ref ticks));
+            return sorted;
         }
     }
 
