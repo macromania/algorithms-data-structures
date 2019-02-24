@@ -48,6 +48,7 @@ These are recommended go-to data structures for some real-life Software examples
 ## Algorithms
 
 - [Quick Sort](/algorithms/quicksort)
+- [Merge Sort](/algorithms/mergesort)
 - [Binary Search](/algorithms/binarysearch)
 
 ## Data Structures
